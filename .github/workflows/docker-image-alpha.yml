@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - alpha
+      - alpha-me
   workflow_dispatch:
     inputs:
       name:
