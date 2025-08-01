@@ -358,6 +358,7 @@ export function getChannelIcon(channelType) {
       return <Ollama size={iconSize} />;
     case 14: // Anthropic Claude
     case 33: // AWS Claude
+    case 53: // Claude Code
       return <Claude.Color size={iconSize} />;
     case 41: // Vertex AI
       return <Gemini.Color size={iconSize} />;
@@ -883,12 +884,22 @@ export function renderQuotaWithAmount(amount) {
 }
 
 export function renderQuota(quota, digits = 2) {
+
   let quotaPerUnit = localStorage.getItem('quota_per_unit');
   let displayInCurrency = localStorage.getItem('display_in_currency');
   quotaPerUnit = parseFloat(quotaPerUnit);
   displayInCurrency = displayInCurrency === 'true';
   if (displayInCurrency) {
-    return '$' + (quota / quotaPerUnit).toFixed(digits);
+    const result = quota / quotaPerUnit;
+    const fixedResult = result.toFixed(digits);
+    
+    // 如果 toFixed 后结果为 0 但原始值不为 0，显示最小值
+    if (parseFloat(fixedResult) === 0 && quota > 0 && result > 0) {
+      const minValue = Math.pow(10, -digits);
+      return '$' + minValue.toFixed(digits);
+    }
+    
+    return '$' + fixedResult;
   }
   return renderNumber(quota);
 }
