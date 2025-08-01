@@ -49,7 +49,7 @@ jobs:
 #            calciumion/new-api
             ghcr.io/${{ github.repository }}
           tags: |
-#            type=raw,value=alpha
+            type=raw,value=alpha
             type=raw,value=alpha-{{date 'YYYYMMDD'}}-{{sha}}
 
       - name: Build and push Docker images
