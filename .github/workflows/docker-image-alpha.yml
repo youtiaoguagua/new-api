@@ -46,8 +46,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-#            calciumion/new-api
             ghcr.io/${{ github.repository }}
+#            calciumion/new-api
           tags: |
             type=raw,value=alpha
             type=raw,value=alpha-{{date 'YYYYMMDD'}}-{{sha}}
