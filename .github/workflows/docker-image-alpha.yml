@@ -47,7 +47,7 @@ jobs:
         with:
           images: |
             ghcr.io/${{ github.repository }}
-#            calciumion/new-api
+            calciumion/new-api
           tags: |
             type=raw,value=alpha
             type=raw,value=alpha-{{date 'YYYYMMDD'}}-{{sha}}
